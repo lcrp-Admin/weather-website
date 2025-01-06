@@ -1,0 +1,154 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #00feba, #5b548a);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 2rem;
+    border-radius: 1rem;
+    width: 90%;
+    max-width: 470px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+}
+
+.search-box input {
+    flex: 1;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    outline: none;
+    background: #ebfffc;
+    border-radius: 2rem;
+    font-size: 1rem;
+    margin-right: 1rem;
+}
+
+.search-box button {
+    background: #ebfffc;
+    border: none;
+    outline: none;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.search-box button:hover {
+    background: #00feba;
+    color: white;
+}
+
+.weather-info {
+    text-align: center;
+}
+
+.location h2 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.weather-display img {
+    width: 120px;
+    margin: 1rem 0;
+}
+
+.temperature h1 {
+    font-size: 3.5rem;
+    margin: 1rem 0;
+}
+
+.description {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    text-transform: capitalize;
+}
+
+.details {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 1rem;
+}
+
+.detail {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.detail i {
+    font-size: 1.5rem;
+    color: #5b548a;
+}
+
+.humidity, .wind {
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.text {
+    font-size: 0.8rem;
+    color: #707070;
+}
+
+/* Add these styles to your existing CSS file */
+
+.search-box input:disabled {
+    background: #ffebeb;
+    color: #ff4444;
+    cursor: not-allowed;
+}
+
+.search-box button:disabled {
+    background: #ffebeb;
+    color: #ff4444;
+    cursor: not-allowed;
+}
+
+.search-box button:disabled:hover {
+    background: #ffebeb;
+    color: #ff4444;
+}
+
+/* Add this to your existing CSS */
+.timestamp {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    font-size: 0.8rem;
+    color: rgba(0, 0, 0, 0.6);
+    font-style: italic;
+}
+
+/* Add these styles to your existing CSS */
+marquee {
+    background: rgba(255, 0, 0, 0.1);
+    padding: 10px;
+    margin-top: 20px;
+    border-radius: 8px;
+    color: #ff4444;
+    font-size: 14px;
+    border: 1px solid rgba(155, 10, 0, 0.4);
+}
+
+marquee:hover {
+    background: rgba(166, 10, 0, 0.3);
+    transition: background 0.3s ease;
+}
