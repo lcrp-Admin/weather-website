@@ -11,10 +11,11 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    color: white;
 }
 
 .container {
-    background: rgba(255, 255, 255, 0.9);
+    background: #333;
     padding: 2rem;
     border-radius: 1rem;
     width: 90%;
@@ -167,6 +168,7 @@ footer {
 footer .copy {
     margin: 0;
     font-size: 14px;
+    color: #444;
 }
 
 footer a {
@@ -191,6 +193,14 @@ footer:hover a {
     pointer-events: all;
     opacity: 1;
     text-decoration: underline;
+}
+
+footer .copy:hover {
+    color: red;
+    pointer-events: all;
+    opacity: 1;
+    text-decoration: underline;
+    transition: 0.5s; 
 }
 
 .Typing-Text {

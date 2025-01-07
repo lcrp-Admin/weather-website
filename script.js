@@ -52,7 +52,7 @@ function formatTimestamp(timestamp) {
     const formattedHours = hours % 12 || 12;
     const formattedMinutes = minutes < 10 ? '0' + minutes : minutes;
     
-    return `Last updated: ${formattedHours}:${formattedMinutes} ${ampm}`;
+    return `Last Edited: ${formattedHours}:${formattedMinutes} ${ampm}`;
 }
 
 
