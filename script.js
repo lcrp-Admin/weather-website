@@ -2,6 +2,7 @@ const apiKey = '7b667e8ac19abd6752180a176b6cb401';
 const searchInput = document.getElementById('search-input');
 const searchButton = document.getElementById('search-button');
 
+
 async function getWeather(city) {
     try {
         const response = await fetch(
@@ -42,6 +43,7 @@ function setBackgroundColor(temperature) {
     }
 }
 
+
 function formatTimestamp(timestamp) {
     const date = new Date(timestamp * 1000);
     const hours = date.getHours();
@@ -53,6 +55,7 @@ function formatTimestamp(timestamp) {
     return `Last updated: ${formattedHours}:${formattedMinutes} ${ampm}`;
 }
 
+
 function displayWeather(data) {
     document.getElementById('city').textContent = `Weather in Pell City`;
     document.getElementById('country').textContent = 'US';
@@ -62,6 +65,8 @@ function displayWeather(data) {
     document.getElementById('wind').textContent = `${(data.wind.speed).toFixed(1)} MPH`;
     document.getElementById('weather-icon').src = 
         `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
+
+
     
     // Add timestamp
     document.getElementById('timestamp').textContent = formatTimestamp(data.dt);
@@ -70,12 +75,14 @@ function displayWeather(data) {
 }
 
 
+
 searchButton.addEventListener('click', () => {
     const city = searchInput.value.trim();
     if (city) {
         getWeather(city);
     }
 });
+
 
 searchInput.addEventListener('keyup', (event) => {
     if (event.key === 'Enter') {
@@ -86,21 +93,34 @@ searchInput.addEventListener('keyup', (event) => {
     }
 });
 
+
 // Load Pell City weather by default
 getWeather('Pell City');
+
 
 function disableSearchControls() {
     searchInput.disabled = true;
     searchButton.disabled = true;
+    // Hide the elements
+    searchInput.style.display = 'none';
+    searchButton.style.display = 'none';
+    // Also hide the parent search-box if desired
+    document.querySelector('.search-box').style.display = 'none';
 }
 
 function enableSearchControls() {
     searchInput.disabled = false;
     searchButton.disabled = false;
+    // Show the elements
+    searchInput.style.display = 'block';
+    searchButton.style.display = 'block';
+    // Show the parent search-box if hidden
+    document.querySelector('.search-box').style.display = 'flex';
 }
 
+
 async function getWeather(city) {
-    disableSearchControls();
+    enableSearchControls();
     try {
         const response = await fetch(
             `https://api.openweathermap.org/data/2.5/weather?q=Pell City,AL,US&units=imperial&appid=${apiKey}`
@@ -117,4 +137,63 @@ async function getWeather(city) {
     } finally {
         disableSearchControls();
     }
+}
+
+// Add this to your existing JavaScript
+class TypeWriter {
+    constructor(txtElement, words, wait = 3000) {
+        this.txtElement = txtElement;
+        this.words = words;
+        this.txt = '';
+        this.wordIndex = 0;
+        this.wait = parseInt(wait, 10);
+        this.type();
+        this.isDeleting = false;
+    }
+
+    type() {
+        const current = this.wordIndex % this.words.length;
+        const fullTxt = this.words[current];
+
+        if(this.isDeleting) {
+            this.txt = fullTxt.substring(0, this.txt.length - 1);
+        } else {
+            this.txt = fullTxt.substring(0, this.txt.length + 1);
+        }
+
+        this.txtElement.innerHTML = `<span class="txt">${this.txt}</span><span class="cursor"></span>`;
+
+        let typeSpeed = 50;
+
+        if(this.isDeleting) {
+            typeSpeed /= 2;
+        }
+
+        if(!this.isDeleting && this.txt === fullTxt) {
+            typeSpeed = this.wait;
+            this.isDeleting = true;
+        } else if(this.isDeleting && this.txt === '') {
+            this.isDeleting = false;
+            this.wordIndex++;
+            typeSpeed = 500;
+        }
+
+        setTimeout(() => this.type(), typeSpeed);
+    }
+}
+
+// Initialize the TypeWriter when the DOM loads
+document.addEventListener('DOMContentLoaded', init);
+
+function init() {
+    const txtElement = document.querySelector('.Typing-Text');
+    const words = [
+        'Welcome to Live Weather Tracker!',
+        'Currently showing weather for Pell City, AL',
+        'Updates every 5 minutes automatically',
+        'Stay informed with real-time weather updates'
+    ];
+    const wait = 3000;
+
+    new TypeWriter(txtElement, words, wait);
 }
