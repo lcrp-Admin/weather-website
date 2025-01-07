@@ -191,7 +191,8 @@ function init() {
         'Welcome to Live Weather Tracker!',
         'Currently showing weather for Pell City, AL',
         'Updates every 5 minutes automatically',
-        'Stay informed with real-time weather updates'
+        'Stay informed with real-time weather updates',
+        'searchbar functionality unavailable'
     ];
     const wait = 3000;
 
